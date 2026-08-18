@@ -1,0 +1,2 @@
+import type { JobObject } from "../types/job.js";
+export async function importJob(baseUrl:string,token:string,job:JobObject){const response=await fetch(`${baseUrl.replace(/\/$/,"")}/api/jobs/import`,{method:"POST",headers:{"Content-Type":"application/json",Authorization:`Bearer ${token}`},body:JSON.stringify(job)});const result=await response.json();if(!response.ok)throw new Error(result.error||"Import failed");return result as {success:boolean;job_id:string;duplicate:boolean;match_score:number;recommendation:string};}

@@ -1,0 +1,3 @@
+import { authenticatedJobClient } from "@/lib/jobs/authenticateImport";import type { ApplicationStatus } from "@/types/application";
+export async function PATCH(request:Request,{params}:{params:Promise<{id:string}>}){try{const{id}=await params;const client=await authenticatedJobClient(request);const body=await request.json() as {application_status?:ApplicationStatus;notes?:string;greeting_text?:string;resume_version_id?:string};const patch={...body,updated_at:new Date().toISOString()};const{data,error}=await client.from("applications").update(patch).eq("id",id).select().single();if(error)throw error;return Response.json({application:data});}catch(error){return Response.json({error:error instanceof Error?error.message:"保存失败"},{status:500});}}
+

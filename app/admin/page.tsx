@@ -1,0 +1,5 @@
+import Link from "next/link";
+const modules=[
+ ["profile","基本资料","姓名、联系方式与个人简介"],["education","教育经历","学校、学位与 GPA"],["experience","工作 / 实习","机构、职位与成果"],["projects-resume","项目经历","设计实践与产品项目"],["research","科研经历","数据、方法与研究成果"],["publications","论文成果","作者、期刊与发表状态"],["skills","技能","数据、设计、编程与语言"],["awards","获奖经历","竞赛与奖学金"]
+];
+export default function Page(){return <section className="mx-auto max-w-5xl"><p className="text-xs uppercase tracking-[.25em] text-neutral-500">Personal knowledge base</p><h1 className="mb-14 mt-3 text-5xl font-light">个人资料库</h1><div className="grid border-l border-t border-neutral-300 md:grid-cols-2">{modules.map(([path,title,desc])=><Link key={path} href={`/admin/${path}`} className="border-b border-r border-neutral-300 p-8 transition-colors hover:bg-black hover:text-white"><h2 className="text-xl">{title}</h2><p className="mt-3 text-sm opacity-60">{desc}</p></Link>)}</div><Link href="/resume" className="mt-8 block bg-black p-5 text-center text-white">打开实时简历预览 →</Link></section>}
